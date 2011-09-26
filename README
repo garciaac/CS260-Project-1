@@ -1,10 +1,17 @@
 Globals
 
-ROUNDS
-FUNC_DEPTH
-PDD_RES
-PCC_RES
-PCD_RES
-POP_SIZE
+ROUNDS //Number of rounds in a matchup between two oppoents
+FUNC_DEPTH //Number of histories we would like to save plus 2
+PDD_RES //The resolution of the defect,defect prob distr
+PCC_RES //""                   ""COOP,COOP"           "
+PCD_RES //"                    ""COOP,DEFECT"             "
+POP_SIZE //"4 plus number of random functions"
 COOP == 1
 DEFECT == 0
+
+
+Choosen Functions in addition to random functions
+-Always coop
+-Always Defect
+-OP1
+-OP1 90%, Coop 10%
