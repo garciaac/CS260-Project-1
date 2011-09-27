@@ -1,0 +1,6 @@
+Introduction
+Related Works
+	-algorithms we looked up
+	-wikipedia stuff etc. that we used
+Evaluation of Our Strategy
+Conclusions
