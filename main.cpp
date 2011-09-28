@@ -83,12 +83,15 @@ int main()
     ofstream file;
     file.open("masterLisp.txt");
 
+
+/*
     //Creat set  contesting functions
     function alwaysC (1,0,0);
     function alwaysD (0,1,0);
     function opChoice (0,0,1);
     function opChoice90 (0.1,0,0.9);
 
+	//Initial strategy
     //Add customs to list
     vector<function> funcList;
     funcList.push_back(alwaysC);
@@ -101,9 +104,9 @@ int main()
         function obj;
         funcList.push_back(obj);
     }
-    
+   */ 
 
-/*
+
 	//Since the majority of the time, the winner
 	//is alwaysC, alwaysD, or op1, then maybe we should
 	//have a combo of these battling instead of just
@@ -136,7 +139,6 @@ int main()
         	funcList.push_back(obj);
     	} 
 
-*/
 
 
 //Debug
