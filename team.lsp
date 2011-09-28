@@ -4,13 +4,22 @@
 ;)
 
 ;; history is opponent specific and returns c or d
-;; history of form ('c 'd 'd ...)
-;(defun make-choice-aanz (func ophistory)
+;; history of form ('c 'd 'd ...) most recent first
+(defun make-choice-aanz (func ophistory)
+  (if (< (rand-aanz) (make-choice-prob-aanz func ophistory)) 'c 'd))
 
-;)
+;; helper for make choice, (gives probablity of cooperating)
+(defun make-choice-prob-aanz (func ophistory)
+  (let ((c-prob (first func)) (func-op (cddr func)))
+    (progn (dotimes (i (length func-op)) 
+      (progn (if (eq (first ophistory) 'c) (setf c-prob (+ c-prob (first func-op))))
+             (setf func-op (rest func-op))
+             (setf ophistory (rest ophistory))))
+           c-prob)))
 
 ;; returns a function (in its list form)
 ;(defun look-up-aanz (prob-data)
+;; implement this when format of generated data is known
 ;)
 
 ;; returns a real number which is the value of the probability
