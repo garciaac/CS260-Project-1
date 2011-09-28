@@ -6,6 +6,7 @@ const int FUNC_DEPTH = 12;
 const int POP_SIZE = 10;
 const int ROUNDS = 100;
 const int ROUND_START=100;
+const int RAND_COUNT = 5;
 
 const int PCC_RANGE = 20;
 const int PCD_RANGE = 100;
