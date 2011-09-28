@@ -3,7 +3,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
-#include "..\include\function.h"
+#include "function.h"
 using namespace std;
 
 struct score_compare

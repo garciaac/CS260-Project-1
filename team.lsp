@@ -2,6 +2,8 @@
 ;; cdr points to the history structure
 ;(defun decide-aanz (opID history last-op-decision opchange mychange)
 ;)
+;
+; history of form '(('ophist ( 1 '( c d ..)) (2 '(d c ..)) ) ('data ( ( 80 90 ..) ( 50 60 ..))))
 
 ;; history is opponent specific and returns c or d
 ;; history of form ('c 'd 'd ...) most recent first
