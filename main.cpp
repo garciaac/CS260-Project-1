@@ -3,7 +3,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
-#include "..\include\function.h"
+#include "function.h"
 using namespace std;
 
 struct score_compare
@@ -117,7 +117,7 @@ int main()
 	vector<function> funcList;
 	for (double c = 0; c<=1; c+=0.1)
 	{
-		for (double d = 0; d<=1, d+=0.1)
+		for (double d = 0; d<=1; d+=0.1)
 		{
 			for (double op1 = 0; op1<=1; op1+=0.1)
 			{
