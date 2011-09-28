@@ -101,6 +101,44 @@ int main()
         function obj;
         funcList.push_back(obj);
     }
+    
+
+/*
+	//Since the majority of the time, the winner
+	//is alwaysC, alwaysD, or op1, then maybe we should
+	//have a combo of these battling instead of just
+	//those 3 and randoms. Then add randoms as wanted.
+	//Plus this will cover the customs we put in.
+	//This yields all possible combos of the first three spots.
+	//with res 0.1
+	vector<function> funcList;
+	for (double c = 0; c<=1; c+=0.1)
+	{
+		for (double d = 0; d<=1, d+=0.1)
+		{
+			for (double op1 = 0; op1<=1; op1+=0.1)
+			{
+				if ( (c + d + op1)==1)
+				{
+					function obj(c,d,op1);
+					funcList.push_back(obj);
+				}
+			}
+		}
+		
+	}
+
+	//Then add the number of randoms we would like:
+	//Note: need to add constant if used
+	 for (int i = 0; i<RAND_COUNT;++i)
+    	{
+        	function obj;
+        	funcList.push_back(obj);
+    	} 
+
+*/
+
+
 //Debug
 //    for (int i = 0; i<funcList.size();++i)
 //        {
@@ -110,7 +148,7 @@ int main()
 //
 //    cout<<funcList.size();
 
-//Three specific distributions for now
+//Three specific random distributions for initial debug
     /*
     map<int,double> Pcc;
     map<int,double> Pcd;
