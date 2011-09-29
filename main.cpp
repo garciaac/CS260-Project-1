@@ -3,7 +3,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
-#include "..\include\function.h"
+#include "function.h"
 using namespace std;
 
 struct score_compare
@@ -83,12 +83,15 @@ int main()
     ofstream file;
     file.open("masterLisp.txt");
 
+
+/*
     //Creat set  contesting functions
     function alwaysC (1,0,0);
     function alwaysD (0,1,0);
     function opChoice (0,0,1);
     function opChoice90 (0.1,0,0.9);
 
+	//Initial strategy
     //Add customs to list
     vector<function> funcList;
     funcList.push_back(alwaysC);
@@ -101,9 +104,9 @@ int main()
         function obj;
         funcList.push_back(obj);
     }
-    
+   */ 
 
-/*
+
 	//Since the majority of the time, the winner
 	//is alwaysC, alwaysD, or op1, then maybe we should
 	//have a combo of these battling instead of just
@@ -114,7 +117,7 @@ int main()
 	vector<function> funcList;
 	for (double c = 0; c<=1; c+=0.1)
 	{
-		for (double d = 0; d<=1, d+=0.1)
+		for (double d = 0; d<=1; d+=0.1)
 		{
 			for (double op1 = 0; op1<=1; op1+=0.1)
 			{
@@ -136,7 +139,6 @@ int main()
         	funcList.push_back(obj);
     	} 
 
-*/
 
 
 //Debug

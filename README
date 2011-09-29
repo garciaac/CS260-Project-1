@@ -1,5 +1,5 @@
 Globals
-
+asdfasdf
 ROUNDS //Number of rounds in a matchup between two oppoents
 FUNC_DEPTH //Number of histories we would like to save plus 2
 PDD_RES //The resolution of the defect,defect prob distr
