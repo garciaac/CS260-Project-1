@@ -1,9 +1,9 @@
-#include "..\include\function.h"
+#include "function.h"
 #include <vector>
 #include <time.h>
 #include <stdlib.h>
 #include <iostream>
-#include "..\include\constants.h"
+#include "constants.h"
 using namespace std;
 
 function::
