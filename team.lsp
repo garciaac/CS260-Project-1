@@ -1,6 +1,6 @@
 ;; returns cons cell whose car points to 'COOP or 'DEFECT and the 
 ;; cdr points to the history structure
-(defun decide-aanz (opID history last-op-decision opchange mychange)
+;(defun decide-aanz (opID history last-op-decision opchange mychange)
   ; last-op-desc to ophist (ophist now in sync)
   ; opchange, mychange to probdata
   ; make decision
@@ -10,7 +10,7 @@
 ;                            ophist ----------------------------------------------          probdata-----------------
 ; history of form '(('ophist ( ( 1 '( c d ..) '(d c ..)) (2 '(d c ..) '(c d ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
 
-; update ophist data with last-op-decision, TODO fix for nil input, should not create table
+; update ophist data with last-op-decision 
 (defun ophist-op-update-aanz (opid ophist last-op-decision)
   (if last-op-decision
     (let ((entry (assoc opid ophist))) ; entry should never be nil, since if last-op-decision is not nil, hisory was populated by our own decision
@@ -18,7 +18,7 @@
 
 ; assumes ophist in sync (when looking up decisions made last round)
 ; update probdata with opchange, mychange, (does nothing on the first round against an opponent, ie when an entry doesnt exist in ophist)
-(defun probdata-update-aanz (opid ophist probdata opchange mychange)
+(defun probdata-update-aanz (opid ophist probdata mychange opchange)
   (let ((entry (assoc opid ophist)))
     (if entry (let ((mychoice (first (second entry))) (opchoice (first (third entry))))
       ; mychoice, opchoice should not be nil, since if so, entry should also be nil
@@ -32,13 +32,13 @@
   (make-choice-aanz (look-up-aanz prob-data) (second (assoc opid ophist))))
 
 
-; update ophist with my decision, creating an entry if one doesnt exist
-(defun ophist-my-update-aanz (opid ophist mydecision)
+; update ophist with my decision, creating an entry if one doesnt exist 
+(defun ophist-my-update-aanz (opid ophist my-decision)
   (let ((entry (assoc opid ophist))) 
-    (progn 
-      (if (not entry) (progn (setf entry (list opid nil nil) (setf ophist (cons entry ophist)))))
-      (setf (third entry) (cons last-op-decision (third entry))))))
-
+    (if (not entry) (setf (rest ophist) (cons (list opid nil (list my-decision)) (rest ophist)))
+                        ; a little hack to make the change a side effect, we cant just change ophist
+                        ; and order doesnt matter so we just insert it after the first element
+                    (setf (third entry) (cons my-decision (third entry))))))
 
 
 ;; history is opponent specific and returns c or d
