@@ -6,6 +6,7 @@
   ; make decision
   ; current-decision to ophist (ophist out of sync)
   ; return decision and history
+  ; TODO
 
 ;                            ophist ----------------------------------------------          probdata-----------------
 ; history of form '(('ophist ( ( 1 '( c d ..) '(d c ..)) (2 '(d c ..) '(c d ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
@@ -56,13 +57,16 @@
            (- 1 c-prob))))
 
 ; returns a function (in its list form)
-;(defun look-up-aanz (prob-data)
-;  (let ((funclength 12)) 
-;    (dotimes (cc 20)
-;      (dotimes (cd 100)
-;        (dotimes (dd 50)
+(defun look-up-aanz (prob-data)
+  (let ((funclength 12)) 
+    (dotimes (cc 20)
+      (dotimes (cd 100)
+        (dotimes (dd 50)
+; TODO
 
-;)
+; pads a func with 0's to make it of the required length, does nothing if its too long
+(defun convert-func-aanz (func funclength)
+  (if (< (length func) funclength)  
 
 ; looks up the function for each of the expected values cc cd dd
 (defun single-look-up-aanz (cc cd dd) 
