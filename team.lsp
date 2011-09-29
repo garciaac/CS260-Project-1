@@ -34,10 +34,10 @@
   (let ((entry (assoc opid ophist)))
     (if entry (let ((mychoice (first (second entry))) (opchoice (first (third entry))))
       ; mychoice, opchoice should not be nil, since if so, entry should also be nil
-      (cond ((and (eq mychoice 'c) (eq opchoice 'c)) (setf (first probdata) (sort (cons opchange (cons mychange (first probdata))) #'<)))
-            ((and (eq mychoice 'c) (eq opchoice 'd)) (setf (second probdata) (sort (cons mychange (second probdata)) #'<)))
-            ((and (eq mychoice 'd) (eq opchoice 'c)) (setf (second probdata) (sort (cons opchange (second probdata)) #'<)))
-            ((and (eq mychoice 'd) (eq opchoice 'd)) (setf (third probdata) (sort (cons opchange (cons mychange (third probdata))) #'<))))))))
+      (cond ((and (eq mychoice 'c) (eq opchoice 'c)) (setf (first probdata) (sort (cons (+ 100 opchange) (cons (+ 100 mychange) (first probdata))) #'<)))
+            ((and (eq mychoice 'c) (eq opchoice 'd)) (setf (second probdata) (sort (cons (+ 100 mychange) (second probdata)) #'<)))
+            ((and (eq mychoice 'd) (eq opchoice 'c)) (setf (second probdata) (sort (cons (+ 100 opchange) (second probdata)) #'<)))
+            ((and (eq mychoice 'd) (eq opchoice 'd)) (setf (third probdata) (sort (cons (+ 100 opchange) (cons (+ 100 mychange) (third probdata))) #'<))))))))
 
 ; returns decision. assumes history is up to date
 (defun make-decision (opid ophist prob-data) 
@@ -129,4 +129,4 @@
 (defun zeron-aanz (n) 
   (if (= n 0) nil (cons 0 (zeron-aanz (- n 1)))))
 
-(load 'masterLisp.txt)
+(load 'masterlisp.txt)
