@@ -5,5 +5,6 @@ main: main.o function.o constants.h
 function.o: function.cpp constants.h
 	g++ -c function.cpp
 
-clean: rm -rf *.o 
+clean: 
+	rm -rf *.o 
 	rm -rf *.exe
