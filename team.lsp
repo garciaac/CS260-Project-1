@@ -57,13 +57,16 @@
 
 ; returns a function (in its list form)
 ;(defun look-up-aanz (prob-data)
-  ;(single-look-up-aanz 
+;  (let ((funclength 12)) 
+;    (dotimes (cc 20)
+;      (dotimes (cd 100)
+;        (dotimes (dd 50)
 
 ;)
 
 ; looks up the function for each of the expected values cc cd dd
 (defun single-look-up-aanz (cc cd dd) 
-  (assoc dd (assoc cd (assoc cc data))))
+  (second (assoc (- 100 dd) (second (assoc (- 100 cd) (second (assoc (- 100 cc) data)))))))
  
 
 ;; returns a real number which is the value of the probability
@@ -85,10 +88,13 @@
         last)
     ; sort here if data unsorted
     (or (dolist (a d)
-      (if (> a x) (return (/ (if last 1.0 .5) (* (length d) (- a (or last bot))))) (setf last a)))
+      (let ((ap (if (= a top) (- a .5) a))) ; a hack to prevent divide by 0 errors when top = a = x
+        (if (> ap x) (return (/ (if last 1.0 .5) (* (length d) (- ap (or last bot))))) (setf last ap))))
         (if last (/ .5 (* (length d) (- top last))) (/ 1.0 (- top bot))))))
 
 
 ; returns random number between 0 and 1
 (defun rand-aanz () 
   (/ (random 4294967296) 4294967296.0))
+
+;(load 'masterLisp.txt)
