@@ -1,15 +1,24 @@
 ;; returns cons cell whose car points to 'COOP or 'DEFECT and the 
 ;; cdr points to the history structure
-;(defun decide-aanz (opID history last-op-decision opchange mychange)
-  ; last-op-desc to ophist (ophist now in sync)
-  ; opchange, mychange to probdata
-  ; make decision
-  ; current-decision to ophist (ophist out of sync)
-  ; return decision and history
-  ; TODO
+(defun decide-aanz (opID history last-op-decision opchange mychange)
+  (progn
+    (if (not history) (setf history '((ophist (nil)) (probdata (nil nil nil)))))
+    (let ((ophist (second (assoc 'ophist history))) (probdata (second (assoc 'probdata history))) decision)
+      (progn
+          ; last-op-desc to ophist (ophist now in sync)
+        (ophist-op-update-aanz opid ophist last-op-decision)
+          ; opchange, mychange to probdata
+        (probdata-update-aanz opid ophist probdata mychange opchange)
+          ; make decision
+        (setf decision (make-decision opid ophist probdata))
+          ; current-decision to ophist (ophist out of sync)
+        (ophist-my-update-aanz opid ophist decision)
+          ; return decision and history
+        (cons (if (eq decision 'c) 'cooperate 'defect) history)))))
 
-;                            ophist ----------------------------------------------          probdata-----------------
-; history of form '(('ophist ( ( 1 '( c d ..) '(d c ..)) (2 '(d c ..) '(c d ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
+
+;                            ophist ----------------------------------------------              probdata-----------------
+; history of form '(('ophist ( ( 1 '( c d ..) '(d c ..)) (2 '(d c ..) '(c d ..)) ) ) ('probdata (( 80 90 ..) ( 50 60 ..)) ))
 
 ; update ophist data with last-op-decision 
 (defun ophist-op-update-aanz (opid ophist last-op-decision)
@@ -118,4 +127,4 @@
 (defun zeron-aanz (n) 
   (if (= n 0) nil (cons 0 (zeron-aanz (- n 1)))))
 
-;(load 'masterLisp.txt)
+(load 'masterLisp.txt)
