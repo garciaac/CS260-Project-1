@@ -7,12 +7,13 @@
   ; current-decision to ophist (ophist out of sync)
   ; return decision and history
 
+;                            ophist --------------------------          probdata-----------------
+; history of form '(('ophist ( ( 1 '( c d ..)) (2 '(d c ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
 
 ; update ophist data with last-op-decision, TODO fix for nil input, should not create table
 (defun ophist-op-update-aanz (opid ophist last-op-decision)
-  (let ((entry (assoc opid ophist)))
-    (progn 
-      (if (not entry) (progn (setf entry (list opid nil nil) (setf ophist (cons entry ophist)))))
+  (if last-op-decision
+    (let ((entry (assoc opid ophist))) ; entry should never be nil, since if last-op-decision is not nil, hisory was populated by our own decision
       (setf (second entry) (cons last-op-decision (second entry))))))
 
 ; assumes ophist in sync (when looking up decisions made last round)
@@ -26,28 +27,23 @@
             ((and (eq mychoice 'd) (eq opchoice 'c)) (setf (second probdata) (sort (cons opchange (second probdata)) #'<)))
             ((and (eq mychoice 'd) (eq opchoice 'd)) (setf (third probdata) (sort (cons opchange (cons mychange (third probdata))) #'<))))))))
 
+; returns decision. assumes history is up to date
+(defun make-decision (ophist prob-data) 
 
 
-  (if (assoc opid ophist) 
-  (setf (ophist (second (assoc opid ophist))) (cons last-op-decision (second (assoc (opid ophist))))) 
-        (myhist (third (assoc opid ophist)))
-        ; revise all this...
-
-;                            ophist --------------------------          probdata-----------------
-; history of form '(('ophist ( ( 1 '( c d ..)) (2 '(d c ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
 
 ;; history is opponent specific and returns c or d
 ;; history of form ('c 'd 'd ...) most recent first
-(defun make-choice-aanz (func ophistory)
-  (if (< (rand-aanz) (make-choice-prob-aanz func ophistory)) 'c 'd))
+(defun make-choice-aanz (func s-ophistory)
+  (if (< (rand-aanz) (make-choice-prob-aanz func s-ophistory)) 'c 'd))
 
 ;; helper for make choice, (gives probablity of cooperating)
-(defun make-choice-prob-aanz (func ophistory)
+(defun make-choice-prob-aanz (func s-ophistory)
   (let ((c-prob (second func)) (func-op (cddr func)))
     (progn (dotimes (i (length func-op)) 
-      (progn (if (eq (first ophistory) 'd) (setf c-prob (+ c-prob (first func-op))))
+      (progn (if (eq (first s-ophistory) 'd) (setf c-prob (+ c-prob (first func-op))))
              (setf func-op (rest func-op))
-             (setf ophistory (rest ophistory))))
+             (setf s-ophistory (rest s-ophistory))))
            (- 1 c-prob))))
 
 ; returns a function (in its list form)
