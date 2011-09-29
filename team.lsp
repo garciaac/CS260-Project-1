@@ -58,11 +58,28 @@
 
 ; returns a function (in its list form)
 (defun look-up-aanz (prob-data)
-  (let ((funclength 12)) 
-    (dotimes (cc 20)
-      (dotimes (cd 100)
-        (dotimes (dd 50)
-; TODO
+  (let* ((funclength 12) (outfunc (zeron funclength)))
+    (progn
+      (dotimes (cc 20)
+        (let ((weightcc (prob-aanz prob-data 'c 'c cc)))
+          (dotimes (cd 100)
+            (let ((weightcd (prob-aanz prob-data 'c 'd cd)))
+              (dotimes (dd 50)
+                (let* ((weightcc (prob-aanz prob-data 'd 'd cc)) 
+                       (weight (* weightcc weightcd weightcc))
+                       (func (single-look-up-aanz cc cd dd))
+                       (outptr outfunc))
+                  (dotimes (i funclength) 
+                    (progn (setf (car outptr) (+ (car outptr) (* weight (if (car func) (car func) 0))))
+                           (setf func (cdr func))
+                           (setf outputr (cdr outptr))))))))))
+      (let ((norm (apply #'+ outfunc)) (funcptr outfunc))
+        (if (> norm 0) 
+          (dotimes (i funclength)
+            (progn (setf (car funcptr) (/ (car funcptr) norm))
+                   (setf funcptr (cdr funcptr))))))
+      outfunc)))
+
 
 ; pads a func with 0's to make it of the required length, does nothing if its too long
 (defun convert-func-aanz (func funclength)
@@ -100,5 +117,9 @@
 ; returns random number between 0 and 1
 (defun rand-aanz () 
   (/ (random 4294967296) 4294967296.0))
+
+; creates a list of n 0's
+(defun zeron-aanz (n) 
+  (if (= n 0) nil (cons 0 (zeron-aanz (- n 1)))))
 
 ;(load 'masterLisp.txt)
