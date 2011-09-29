@@ -56,23 +56,23 @@
              (setf s-ophistory (rest s-ophistory))))
            (- 1 c-prob))))
 
-; returns a function (in its list form)
+; returns the function precribed by the probability distribution estimation
 (defun look-up-aanz (prob-data)
-  (let* ((funclength 12) (outfunc (zeron funclength)))
+  (let* ((funclength 12) (outfunc (zeron-aanz funclength)))
     (progn
       (dotimes (cc 20)
-        (let ((weightcc (prob-aanz prob-data 'c 'c cc)))
+        (let ((weightcc (prob-aanz prob-data 'c 'c (+ 80 cc))))
           (dotimes (cd 100)
             (let ((weightcd (prob-aanz prob-data 'c 'd cd)))
               (dotimes (dd 50)
-                (let* ((weightcc (prob-aanz prob-data 'd 'd cc)) 
+                (let* ((weightcc (prob-aanz prob-data 'd 'd (+ 40 cc)))
                        (weight (* weightcc weightcd weightcc))
-                       (func (single-look-up-aanz cc cd dd))
+                       (func (single-look-up-aanz (+ 80 cc) cd (+ 40 dd)))
                        (outptr outfunc))
                   (dotimes (i funclength) 
                     (progn (setf (car outptr) (+ (car outptr) (* weight (if (car func) (car func) 0))))
                            (setf func (cdr func))
-                           (setf outputr (cdr outptr))))))))))
+                           (setf outptr (cdr outptr))))))))))
       (let ((norm (apply #'+ outfunc)) (funcptr outfunc))
         (if (> norm 0) 
           (dotimes (i funclength)
@@ -80,10 +80,6 @@
                    (setf funcptr (cdr funcptr))))))
       outfunc)))
 
-
-; pads a func with 0's to make it of the required length, does nothing if its too long
-(defun convert-func-aanz (func funclength)
-  (if (< (length func) funclength)  
 
 ; looks up the function for each of the expected values cc cd dd
 (defun single-look-up-aanz (cc cd dd) 
