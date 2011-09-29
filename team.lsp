@@ -6,7 +6,9 @@
     (let ((ophist (second (assoc 'ophist history))) (probdata (second (assoc 'probdata history))) decision)
       (progn
           ; last-op-desc to ophist (ophist now in sync)
-        (ophist-op-update-aanz opid ophist last-op-decision)
+        (ophist-op-update-aanz opid ophist (cond ((eq last-op-decision 'cooperate) 'c)
+                                                 ((eq last-op-decision 'defect) 'd)
+                                                 (T nil)))
           ; opchange, mychange to probdata
         (probdata-update-aanz opid ophist probdata mychange opchange)
           ; make decision
