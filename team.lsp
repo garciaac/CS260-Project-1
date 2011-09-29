@@ -7,8 +7,8 @@
   ; current-decision to ophist (ophist out of sync)
   ; return decision and history
 
-;                            ophist --------------------------          probdata-----------------
-; history of form '(('ophist ( ( 1 '( c d ..)) (2 '(d c ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
+;                            ophist ----------------------------------------------          probdata-----------------
+; history of form '(('ophist ( ( 1 '( c d ..) '(d c ..)) (2 '(d c ..) '(c d ..)) ) ) ('data (( 80 90 ..) ( 50 60 ..)) ))
 
 ; update ophist data with last-op-decision, TODO fix for nil input, should not create table
 (defun ophist-op-update-aanz (opid ophist last-op-decision)
@@ -28,7 +28,16 @@
             ((and (eq mychoice 'd) (eq opchoice 'd)) (setf (third probdata) (sort (cons opchange (cons mychange (third probdata))) #'<))))))))
 
 ; returns decision. assumes history is up to date
-(defun make-decision (ophist prob-data) 
+(defun make-decision (opid ophist prob-data) 
+  (make-choice-aanz (look-up-aanz prob-data) (second (assoc opid ophist))))
+
+
+; update ophist with my decision, creating an entry if one doesnt exist
+(defun ophist-my-update-aanz (opid ophist mydecision)
+  (let ((entry (assoc opid ophist))) 
+    (progn 
+      (if (not entry) (progn (setf entry (list opid nil nil) (setf ophist (cons entry ophist)))))
+      (setf (third entry) (cons last-op-decision (third entry))))))
 
 
 
@@ -47,10 +56,10 @@
            (- 1 c-prob))))
 
 ; returns a function (in its list form)
-(defun look-up-aanz (prob-data)
-  (single-look-up-aanz 
+;(defun look-up-aanz (prob-data)
+  ;(single-look-up-aanz 
 
-)
+;)
 
 ; looks up the function for each of the expected values cc cd dd
 (defun single-look-up-aanz (cc cd dd) 
