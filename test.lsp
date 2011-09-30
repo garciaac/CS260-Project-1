@@ -22,3 +22,4 @@
 (setf mypts -100)
 (setf oppts -100)
 
+(play nil)
