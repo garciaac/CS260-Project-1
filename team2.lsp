@@ -36,7 +36,7 @@
 ; against an opponent, ie when an entry doesnt exist in ophist)
 (defun probdata-update-aanz (opid ophist probdata mychange opchange)
   (let ((entry (assoc opid ophist)))
-    (if entry (let ((mychoice (first (second entry))) (opchoice (first (third entry))))
+    (if entry (let ((mychoice (first (third entry))) (opchoice (first (second entry))))
       ; mychoice, opchoice should not be nil, since if so, entry should also be nil
       (cond ((and (eq mychoice 'c) (eq opchoice 'c)) 
              (setf (first probdata) (sort (cons (+ 100 opchange) (cons (+ 100 mychange) (first probdata))) #'<)))
