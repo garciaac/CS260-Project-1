@@ -6,6 +6,14 @@
 #include "function.h"
 using namespace std;
 
+// ---------------------------------------------------------------------------
+// NOTE: as we were coding, we realized a serious flaw in our logic, so much |
+// of the code is deprecated, but we left it in just in case we needed to go |
+// back to it, so just ignore the large sections of inactive code.           |
+// ---------------------------------------------------------------------------
+
+// Functor to be used in the std::max algorithm, so that the winner is chosen
+// according to our own criteria.
 struct score_compare
 {
     bool operator ()(function a, function b)
@@ -14,9 +22,12 @@ struct score_compare
     }
 };
 
+// This function became obselete when we changed our strategy, but to avoid 
+// changing much of our existing code, we kept it here. All it does is return
+// its parameter
 int pointLoss(int expecLoss)
 {
-    /*
+/*
     int randNum = rand()%100 +1;
     double lastVal = 0.0;
     for (map<int,double>::iterator iter = probDist.begin(); iter!=probDist.end(); ++iter)
@@ -27,24 +38,40 @@ int pointLoss(int expecLoss)
         lastVal += (*iter).second*100;
     }
     cout<<"ERROR dropped out of for in pointLoss "<<endl;
-    */
+*/
     return expecLoss;
 }
 
+// This is arguably the most important function as it is the one
+// that pits two algorithms against each other. It takes in two function 
+// objects that are going to play against each other, and it also takes 
+// the number of rounds they should play against each other as well as 
+// the three expected values of the three probability distributions. 
 void battle(function& A,function& B, int ccExpec,
        int cdExpec, int ddExpec, int rds)
 {
+    // We only keep a history on a per opponent basis for the simulation 
+    // to conserve resources. 
     A.emptyHist();
     B.emptyHist();
+
+    // Loop throught the number of rounds to play against this opponent
     for (int i=0;i<rds;++i)
     {
+        // The two algorithms make their choices based on their histories and
+	// the three expected values
         bool aChoice = A.makeChoice();
         bool bChoice = B.makeChoice();
 
-       // cout<<"a decides to "<<aChoice<<endl;
-        //cout<<"b decides to "<<bChoice<<endl;
+        // Debug
+        // cout<<"a decides to "<<aChoice<<endl;
+        // cout<<"b decides to "<<bChoice<<endl;
+
+	// Make place holders for the amount of points to award the two players
         int aPoints = ROUND_START;
         int bPoints = ROUND_START;
+	
+	// For each possible combination of decisions, points are awarded 
         if (aChoice & bChoice) //c,c
         {
             aPoints -= pointLoss(ccExpec);
@@ -64,17 +91,19 @@ void battle(function& A,function& B, int ccExpec,
             bPoints -= pointLoss(ddExpec);
         }
 
+        // Award the points to the two players
         A.incrPoints(aPoints);
         B.incrPoints(bPoints);
 
+        // Update the two players' histories
         A.updateHist(bChoice);
         B.updateHist(aChoice);
 
-         //Debug
-        //cout<<"A won "<< aPoints<<endl;
-        //cout<<"B won "<< bPoints<<endl;
+         // Debug
+         // cout<<"A won "<< aPoints<<endl;
+         // cout<<"B won "<< bPoints<<endl;
     }
-    //cout<<"Battle over"<<endl;
+    // cout<<"Battle over"<<endl;
 }
 
 int main()
@@ -85,14 +114,15 @@ int main()
 
 
 /*
-    //Creat set  contesting functions
+    // Creat set of contesting functions
     function alwaysC (1,0,0);
     function alwaysD (0,1,0);
     function opChoice (0,0,1);
     function opChoice90 (0.1,0,0.9);
 
-	//Initial strategy
+    //Initial strategy
     //Add customs to list
+    
     vector<function> funcList;
     funcList.push_back(alwaysC);
     funcList.push_back(alwaysD);
@@ -104,16 +134,16 @@ int main()
         function obj;
         funcList.push_back(obj);
     }
-   */ 
+*/ 
 
 
-	//Since the majority of the time, the winner
-	//is alwaysC, alwaysD, or op1, then maybe we should
-	//have a combo of these battling instead of just
-	//those 3 and randoms. Then add randoms as wanted.
-	//Plus this will cover the customs we put in.
-	//This yields all possible combos of the first three spots.
-	//with res 0.1
+	// Since the majority of the time, the winner
+	// is alwaysC, alwaysD, or op1, then maybe we should
+	// have a combo of these battling instead of just
+	// those 3 and randoms. Then add randoms as wanted.
+	// Plus this will cover the customs we put in.
+	// This yields all possible combos of the first three spots.
+	// with res 0.1
 	vector<function> funcList;
 	for (double c = 0; c<=1; c+=0.1)
 	{
@@ -131,8 +161,8 @@ int main()
 		
 	}
 
-	//Then add the number of randoms we would like:
-	//Note: need to add constant if used
+	// Then add the number of randoms we would like:
+	// Note: need to add constant if used
 	 for (int i = 0; i<RAND_COUNT;++i)
     	{
         	function obj;
@@ -141,7 +171,7 @@ int main()
 
 
 
-//Debug
+// Debug
 //    for (int i = 0; i<funcList.size();++i)
 //        {
 //            funcList[i].print();
@@ -151,7 +181,7 @@ int main()
 //    cout<<funcList.size();
 
 //Three specific random distributions for initial debug
-    /*
+/*
     map<int,double> Pcc;
     map<int,double> Pcd;
     map<int,double> Pdd;
@@ -177,7 +207,9 @@ int main()
         Pdd.insert(pair <int,double>(key,pdd_probs.get(key)));
     }
 */
-    //Battle of all possible expected values
+
+    // Battle of all possible expected values and write results to file
+    // with correct lisp syntax
     file << "(";
     for (int cc = 0; cc<=20;++cc)
     {
@@ -226,5 +258,6 @@ int main()
         file << "))";
     }
     file << ")";
+    // Now we are done so close the file stream
     file.close();
 }
