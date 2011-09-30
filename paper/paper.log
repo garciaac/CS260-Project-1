@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.1.28)  30 SEP 2011 02:35
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.1.28)  30 SEP 2011 02:40
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -96,8 +96,8 @@ Package: amsfonts 2001/10/25 v2.2f
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
 ))
-(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty
-Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+(/usr/share/texmf-texlive/tex/latex/psnfss/bookman.sty
+Package: bookman 2005/04/12 PSNFSS-v9.2a (SPQR) 
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
@@ -113,11 +113,17 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 17.
+LaTeX Font Info:    Try loading font information for OT1+pbk on input line 17.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1pbk.fd
+File: ot1pbk.fd 2001/06/04 font definitions for OT1/pbk.
 )
+LaTeX Font Info:    Font shape `OT1/pbk/m/n' in size <10.95> not available
+(Font)              Font shape `OT1/pbk/l/n' tried instead on input line 17.
+LaTeX Font Info:    Font shape `OT1/pbk/m/n' in size <17.28> not available
+(Font)              Font shape `OT1/pbk/l/n' tried instead on input line 18.
+LaTeX Font Info:    Font shape `OT1/pbk/m/n' in size <12> not available
+(Font)              Font shape `OT1/pbk/l/n' tried instead on input line 18.
 LaTeX Font Info:    Try loading font information for U+msa on input line 18.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
@@ -128,53 +134,60 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 )
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ô in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ò in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ô in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ò in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ô in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ò in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ô in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ô in font ptmr7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ô in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ò in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ô in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ò in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ô in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ò in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ô in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ô in font pbkl7t!
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
+LaTeX Font Info:    Font shape `OT1/pbk/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/pbk/l/it' tried instead on input line 27.
  [2]
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ú in font ptmr7t!
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ù in font ptmr7t!
+LaTeX Font Info:    Font shape `OT1/pbk/m/n' in size <14.4> not available
+(Font)              Font shape `OT1/pbk/l/n' tried instead on input line 32.
+LaTeX Font Info:    Font shape `OT1/pbk/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/pbk/b/n' tried instead on input line 32.
+LaTeX Font Info:    Font shape `OT1/pbk/b/n' in size <14.4> not available
+(Font)              Font shape `OT1/pbk/db/n' tried instead on input line 32.
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ú in font pbkl7t!
+Missing character: There is no ‚ in font pbkl7t!
+Missing character: There is no Ä in font pbkl7t!
+Missing character: There is no ù in font pbkl7t!
+ [3]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 46.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [3] [4] [5] (./paper.aux) ) 
+) [4] [5] [6] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 1201 strings out of 94074
- 13515 string characters out of 1165153
- 63145 words of memory out of 1500000
- 4508 multiletter control sequences out of 10000+50000
- 18929 words of font info for 51 fonts, out of 1200000 for 2000
+ 1223 strings out of 94074
+ 13843 string characters out of 1165153
+ 63147 words of memory out of 1500000
+ 4529 multiletter control sequences out of 10000+50000
+ 16187 words of font info for 51 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  27i,9n,24p,1749b,199s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.
@@ -186,12 +199,12 @@ mf-texlive/fonts/type1/bluesky/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type
 1/bluesky/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.p
 fb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf
 -texlive/fonts/type1/bluesky/ams/msbm10.pfb></usr/share/texmf-texlive/fonts/typ
-e1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
-xmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (5 pages, 88665 bytes).
+e1/urw/bookman/ubkd8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/bookman/ubk
+l8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/bookman/ubkli8a.pfb></usr/sha
+re/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on paper.pdf (6 pages, 88041 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
